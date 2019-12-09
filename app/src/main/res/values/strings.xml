@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MotionEdu</string>
+    <string name="button_cancel">cancel</string>
+    <string name="button_ok">enter</string>
+</resources>
