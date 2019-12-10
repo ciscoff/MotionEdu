@@ -1,5 +1,6 @@
 package k.s.yarlykov.motionedu
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -12,8 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonOk.setOnClickListener {
+        buttonCancel.setOnClickListener {
             (motionLayout as MotionLayout).transitionToStart()
+        }
+
+        buttonOk.setOnClickListener {
+            startActivity(Intent(this, GridActivity::class.java))
         }
     }
 
