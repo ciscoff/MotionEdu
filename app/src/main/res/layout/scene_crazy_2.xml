@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/square_tl"
+            android:layout_width="@dimen/square_size_normal"
+            android:layout_height="@dimen/square_size_normal"
+            android:layout_gravity="top|left"
+            android:background="@android:color/holo_blue_bright" />
+
+        <View
+            android:id="@+id/square_tr"
+            android:layout_width="@dimen/square_size_normal"
+            android:layout_height="@dimen/square_size_normal"
+            android:layout_gravity="top|right"
+            android:background="@android:color/holo_red_dark" />
+
+        <View
+            android:id="@+id/square_bl"
+            android:layout_width="@dimen/square_size_normal"
+            android:layout_height="@dimen/square_size_normal"
+            android:layout_gravity="bottom|left"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:id="@+id/square_br"
+            android:layout_width="@dimen/square_size_normal"
+            android:layout_height="@dimen/square_size_normal"
+            android:layout_gravity="bottom|right"
+            android:background="@android:color/holo_green_dark" />
+    </GridLayout>
+</FrameLayout>
