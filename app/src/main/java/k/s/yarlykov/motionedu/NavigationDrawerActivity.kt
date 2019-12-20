@@ -19,7 +19,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.animation.AnimationUtils
-import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
+import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 
 
 /**
@@ -28,6 +28,8 @@ import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
  *
  * https://stackoverflow.com/questions/29191837/navigation-drawer-animation-android
  *
+ * Ограничения о размещении List-элементов в NavigationView
+ * https://stackoverflow.com/questions/30978114/add-a-listview-or-recyclerview-to-new-navigationview
  *
  */
 
@@ -42,7 +44,7 @@ class NavigationDrawerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
-//        initRecyclerView()
+        initRecyclerView()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -79,10 +81,10 @@ class NavigationDrawerActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-//        with(recyclerMenu) {
-//            layoutManager = LinearLayoutManager(this@NavigationDrawerActivity)
-//            adapter = Adapter()
-//        }
+        with(recyclerMenu) {
+            layoutManager = LinearLayoutManager(this@NavigationDrawerActivity)
+            adapter = Adapter()
+        }
     }
 
 
