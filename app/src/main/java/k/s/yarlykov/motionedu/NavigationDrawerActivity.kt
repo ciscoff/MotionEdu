@@ -1,6 +1,10 @@
 package k.s.yarlykov.motionedu
 
 import android.os.Bundle
+import android.transition.Scene
+import android.transition.Transition
+import android.transition.TransitionInflater
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -39,11 +43,16 @@ class NavigationDrawerActivity : AppCompatActivity() {
         private const val ITEMS = 5
     }
 
+    private lateinit var transition: Transition
+    private lateinit var sceneExit : Scene
+    private lateinit var scene1Enter : Scene
+
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
+        prepareTransition()
 
         initRecyclerView()
 
@@ -56,9 +65,11 @@ class NavigationDrawerActivity : AppCompatActivity() {
 
             override fun onDrawerClosed(drawerView: View) {
                 recyclerMenu.adapter?.notifyDataSetChanged()
+                TransitionManager.go(sceneExit, transition)
             }
 
             override fun onDrawerOpened(drawerView: View) {
+                TransitionManager.go(scene1Enter, transition)
             }
         })
 
@@ -101,6 +112,19 @@ class NavigationDrawerActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@NavigationDrawerActivity)
             adapter = Adapter()
         }
+    }
+
+
+    private fun prepareTransition() {
+        val rootContainer = nav_container
+
+        transition = TransitionInflater.from(this)
+            .inflateTransition(R.transition.header_transition)
+
+        sceneExit = Scene.getSceneForLayout(rootContainer, R.layout.scene_drawer_header_1, this)
+        scene1Enter = Scene.getSceneForLayout(rootContainer, R.layout.scene_drawer_header_2, this)
+        sceneExit.enter()
+
     }
 
     inner class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
