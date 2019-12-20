@@ -36,7 +36,7 @@ import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 class NavigationDrawerActivity : AppCompatActivity() {
 
     companion object {
-        private val ITEMS = 5
+        private const val ITEMS = 5
     }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -44,7 +44,23 @@ class NavigationDrawerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
+
         initRecyclerView()
+
+        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerStateChanged(newState: Int) {
+            }
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                recyclerMenu.adapter?.notifyDataSetChanged()
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+            }
+        })
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -87,7 +103,6 @@ class NavigationDrawerActivity : AppCompatActivity() {
         }
     }
 
-
     inner class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -107,23 +122,18 @@ class NavigationDrawerActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-//            setAnimation(holder.itemView, position)
+            setAnimation(holder.itemView, position)
 
 //            holder.itemView.setOnClickListener { view ->
 //            }
         }
-
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
     }
 
     private fun setAnimation(view : View, position : Int) {
         val context = this@NavigationDrawerActivity
-
         val animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left)
-
         animation.duration = position.toLong() * 50 + 200
         view.startAnimation(animation)
     }
-
 }
