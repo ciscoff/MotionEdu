@@ -12,7 +12,7 @@ class GridItemDecoration(var rows: Int, var cols : Int) : RecyclerView.ItemDecor
 
     /**
      * @outRect в своих полях left, top, bottom, right возвращает значения padding'ов
-     * для данного view. То есть это не прямоугольник с координатами или динами сторон.
+     * для данного view. То есть это не прямоугольник с координатами или длинами сторон.
      * Это просто массив из 4-х чисел значений отступов.
      */
 

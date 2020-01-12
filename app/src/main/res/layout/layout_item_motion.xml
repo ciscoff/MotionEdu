@@ -9,18 +9,24 @@
     app:cardUseCompatPadding="true"
     card_view:cardCornerRadius="4dp">
 
-    <LinearLayout
+    <k.s.yarlykov.motionedu.custom.ParallaxListItem
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/motionLayout"
+        app:layoutDescription="@xml/motion_scene_parallax"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        tools:context=".RvEduActivity">
 
         <ImageView
             android:id="@+id/ivMotion"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="128dp"
             android:scaleType="centerCrop"
-            toot:src="@drawable/bkg_01_jan" />
+            toot:src="@drawable/bkg_01_jan"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMotion"
@@ -30,7 +36,12 @@
             android:layout_margin="8dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            toot:text="@string/motion" />
-    </LinearLayout>
+            toot:text="@string/motion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivMotion"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </k.s.yarlykov.motionedu.custom.ParallaxListItem>
 
 </com.google.android.material.card.MaterialCardView>
