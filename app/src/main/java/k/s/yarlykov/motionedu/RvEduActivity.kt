@@ -26,12 +26,20 @@ import kotlinx.android.synthetic.main.activity_rv_edu.*
 
 class RvEduActivity : AppCompatActivity() {
 
+//    val imagesID = listOf(
+//        R.drawable.bkg_01_jan,
+//        R.drawable.bkg_02_feb,
+//        R.drawable.bkg_03_mar,
+//        R.drawable.bkg_04_apr,
+//        R.drawable.bkg_05_may
+//    )
+
     val imagesID = listOf(
-        R.drawable.bkg_01_jan,
-        R.drawable.bkg_02_feb,
-        R.drawable.bkg_03_mar,
-        R.drawable.bkg_04_apr,
-        R.drawable.bkg_05_may
+        R.drawable.clip_bkg_01_jan,
+        R.drawable.clip_bkg_02_feb,
+        R.drawable.clip_bkg_03_mar,
+        R.drawable.clip_bkg_04_apr,
+        R.drawable.clip_bkg_05_may
     )
 
     val subject: BehaviorSubject<Int> = BehaviorSubject.create()
@@ -118,11 +126,10 @@ class RvEduActivity : AppCompatActivity() {
 
                     motionView.onOffsetChanged(view.y)
 
-                    if(adapterPosition == 1) {
-                        System.out.println("APP_TAG: ItemYPosition y=${view.y}")
-                        System.out.println("APP_TAG: ItemHeight y=${view.height}")
-
-                    }
+//                    if(adapterPosition == 1) {
+//                        System.out.println("APP_TAG: ItemYPosition y=${view.y}")
+//                        System.out.println("APP_TAG: ItemHeight y=${view.height}")
+//                    }
                 }
             }
 
