@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import k.s.yarlykov.motionedu.custom.ParallaxListItem
-import k.s.yarlykov.motionedu.custom.ParallaxListItem.Companion.INVALID_MAX_OFFSET
 import k.s.yarlykov.motionedu.custom.VerticalMotionListener
 import kotlinx.android.synthetic.main.activity_rv_edu.*
 
@@ -108,11 +107,12 @@ class RvEduActivity : AppCompatActivity() {
         }
 
         inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-            private var maxY : Float = INVALID_MAX_OFFSET
-            private val ivMotion = view.findViewById<ImageView>(R.id.ivMotion)
-            private val tvMotion = view.findViewById<TextView>(R.id.tvMotion)
+
             private val motionView : VerticalMotionListener
                     = view.findViewById<ParallaxListItem>(R.id.motionLayout)
+
+            private val ivMotion = view.findViewById<ImageView>(R.id.ivMotion)
+            private val tvMotion = view.findViewById<TextView>(R.id.tvMotion)
 
             init {
                 val d = scrollObservable.subscribe {
@@ -123,31 +123,14 @@ class RvEduActivity : AppCompatActivity() {
                         motionView.setDebugFlag(false)
                     }
 
-
-                    if(view.y >= maxY) {
-                        maxY = view.y
-                        motionView.onUpdateMaxOffset(maxY)
-                    }
-
-                    if(adapterPosition == 0) {
-                        System.out.println("APP_TAG: view.y=${view.y}")
-                        System.out.println("APP_TAG: maxY=${maxY}")
-                    }
-
                     motionView.onOffsetChanged(view.y)
-
-
-//                    if(adapterPosition == 1) {
-//                        System.out.println("APP_TAG: ItemYPosition y=${view.y}")
-//                        System.out.println("APP_TAG: ItemHeight y=${view.height}")
-//                    }
                 }
             }
 
             fun bind(imageId: Int) {
+                motionView.onUpdateMaxOffset(motionView.minStartOffset)
                 ivMotion.setImageResource(imageId)
                 tvMotion.text = context.getString(R.string.motion)
-                maxY = INVALID_MAX_OFFSET
             }
         }
     }
